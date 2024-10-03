@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.slstore.customer.model.User;
+import com.example.slstore.customer.model.entity.User;
 
 public class LoginUserDetails implements UserDetails {
 
