@@ -1,4 +1,4 @@
-package com.example.slstore.customer.model;
+package com.example.slstore.customer.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,43 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "users")
 public class User {
 
-        // // Chapter1 Lesson2 Section A
-    // private String name;
-
-    // public String getName() {
-    //     return name;
-    // }
-
-    // public void setName(String name) {
-    //     this.name = name;
-    // }
-
-    // private int points;
-
-    // public int getPoints() {
-    //     return points;
-    // }
-
-    // public void setPoints(int points) {
-    //     this.points = points;
-    // }
-    
-    // // Chapter1 Lesson2 Section B
-    // public String greeting() {
-    //     return "こんにちは、" + this.username + "さん";
-    // }
-
-    // // Chapter1 Lesson2 Section C
-    // public User() {
-    // }
-
-    // public User(String name, int points) {
-    //     this.name = name;
-    //     this.points = points;
-    // }
-
     // Chapter3 Lesson1 Section A
-    // 別テーブルのためテキストにあるポイントは使えない
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

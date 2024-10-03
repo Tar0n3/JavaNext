@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.slstore.customer.model.User;
+import com.example.slstore.customer.model.dto.Account;
+import com.example.slstore.customer.model.entity.User;
 import com.example.slstore.security.LoginUserDetails;
 
 
@@ -52,11 +53,11 @@ public class UserController {
     // Chapter1 Lesson2 Section A
     // @GetMapping("/mypage")
     // public String myPage(Model model) {
-    //     User user = new User();
-    //     user.setName("鈴木太郎");
-    //     user.setPoints(3200);
-    //     String name = user.getName();
-    //     String pointsStr = "保有ポイント： " + user.getPoints() + "pt(初回プレゼント1000ポイント含)";
+    //     Account account = new Account();
+    //     account.setName("鈴木太郎");
+    //     account.setPoints(3200);
+    //     String name = account.getName();
+    //     String pointsStr = "保有ポイント： " + account.getPoints() + "pt(初回プレゼント1000ポイント含)";
 
     //     model.addAttribute("name", name);
     //     model.addAttribute("points", pointsStr);
@@ -67,13 +68,13 @@ public class UserController {
     // Chapter1 Lesson2 Section A
     // @GetMapping("/mypage")
     // public String myPage(Model model) {
-    //     User user = new User();
-    //     user.setName("鈴木太郎");
-    //     user.setPoints(3200);
-    //     String name = user.getName();
-    //     String pointsStr = "保有ポイント： " + user.getPoints() + "pt(初回プレゼント1000ポイント含)";
+    //     Account account = new Account();
+    //     account.setName("鈴木太郎");
+    //     account.setPoints(3200);
+    //     String name = account.getName();
+    //     String pointsStr = "保有ポイント： " + account.getPoints() + "pt(初回プレゼント1000ポイント含)";
 
-    //     String greeting = user.greeting();
+    //     String greeting = account.greeting();
 
     //     model.addAttribute("name", name);
     //     model.addAttribute("points", pointsStr);
@@ -83,20 +84,20 @@ public class UserController {
     // }
 
     // Chapter1 Lesson2 Section C
-    // @GetMapping("/mypage")
-    // public String myPage(Model model) {
-    //     User user = new User("田中太郎", 5000);
-    //     String name = user.getName();
-    //     String pointsStr = "保有ポイント： " + user.getPoints() + "pt(初回プレゼント1000ポイント含)";
+    @GetMapping("/mypage")
+    public String myPage(Model model) {
+        Account account = new Account("田中太郎", 5000);
+        String name = account.getName();
+        String pointsStr = "保有ポイント： " + account.getPoints() + "pt(初回プレゼント1000ポイント含)";
 
-    //     String greeting = user.greeting();
+        String greeting = account.greeting();
 
-    //     model.addAttribute("name", name);
-    //     model.addAttribute("points", pointsStr);
-    //     model.addAttribute("greeting", greeting);
+        model.addAttribute("name", name);
+        model.addAttribute("points", pointsStr);
+        model.addAttribute("greeting", greeting);
 
-    //     return "customer/account/mypage";
-    // }
+        return "customer/account/mypage";
+    }
 
     // Chapter1 Lesson3 Section A
     // @GetMapping("/mypage")
