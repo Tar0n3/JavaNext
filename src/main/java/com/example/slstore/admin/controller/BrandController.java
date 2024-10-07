@@ -1,5 +1,7 @@
 package com.example.slstore.admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,14 @@ public class BrandController {
     @Autowired
     private BrandRepository brandRepository;
     
+    // Chapter3 Lesson1 Section A
+    @GetMapping("/index")
+    public String list(Model model) {
+        List<Brand> brands = brandRepository.findAll();
+        model.addAttribute("brands", brands);
+        return "admin/brand/list";
+    }
+
     // Chapter2 Lesson1 Section A
     // @GetMapping("addform")
     // public String showAddForm() {

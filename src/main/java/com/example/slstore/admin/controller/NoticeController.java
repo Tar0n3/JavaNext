@@ -1,5 +1,7 @@
 package com.example.slstore.admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,15 @@ public class NoticeController {
 
     @Autowired
     private NoticeRepository noticeRepository;
+
+
+    // Chapter3 Lesson1 Section A
+    @GetMapping("/index")
+    public String list(Model model) {
+        List<Notice> notices = noticeRepository.findAll();
+        model.addAttribute("notices", notices);
+        return "admin/notice/list";
+    }
 
     // Chapter2 Lesson1 Section A
     // @GetMapping("/addform")
