@@ -17,13 +17,13 @@ public class BrandController {
 
     @Autowired
     private BrandRepository brandRepository;
-    
+
     // Chapter2 Lesson1 Section A
     // @GetMapping("addform")
     // public String showAddForm() {
-    //     return "admin/brand/add-form";
+    // return "admin/brand/add-form";
     // }
-    
+
     // Chapter2 Lesson1 Section B
     @GetMapping("addform")
     public String showAddForm(Model model) {
@@ -35,27 +35,98 @@ public class BrandController {
     // Chapter2 Lesson1 Section B
     // @PostMapping("/store")
     // public String add(BrandForm brandForm, Model model) {
-    //     String name = brandForm.getName();
-    //     String description = brandForm.getDescription();
+    // String name = brandForm.getName();
+    // String description = brandForm.getDescription();
 
-    //     model.addAttribute("name", name);
-    //     model.addAttribute("description", description);
-    //     return "admin/brand/complete";
+    // model.addAttribute("name", name);
+    // model.addAttribute("description", description);
+    // return "admin/brand/complete";
     // }
 
-        // Chapter2 Lesson1 Section C
-        @PostMapping("/store")
-        public String add(BrandForm brandForm, Model model) {
-            String name = brandForm.getName();
-            String description = brandForm.getDescription();
-    
-            Brand brand = new Brand();
-            brand.setName(name);
-            brand.setDescription(description);
-    
-            brandRepository.save(brand);
+    // Chapter2 Lesson1 Section C
+    // @PostMapping("/store")
+    // public String add(BrandForm brandForm, Model model) {
+    // String name = brandForm.getName();
+    // String description = brandForm.getDescription();
 
-            model.addAttribute("brand", brand);
-            return "admin/brand/complete";
+    // Brand brand = new Brand();
+    // brand.setName(name);
+    // brand.setDescription(description);
+
+    // brandRepository.save(brand);
+
+    // model.addAttribute("brand", brand);
+    // return "admin/brand/complete";
+    // }
+
+    // Chapter2 Lesson2 Section A
+    // @PostMapping("/store")
+    // public String add(BrandForm brandForm, Model model) {
+    // String name = brandForm.getName();
+    // String description = brandForm.getDescription();
+
+    // if (name.equals("")) {
+    // model.addAttribute("errorMessage", "何か入力してください");
+    // return "admin/brand/add-form";
+    // }
+
+    // Brand brand = new Brand();
+    // brand.setName(name);
+    // brand.setDescription(description);
+
+    // brandRepository.save(brand);
+
+    // model.addAttribute("brand", brand);
+    // return "admin/brand/complete";
+    // }
+
+    // Chapter2 Lesson2 Section B
+    // @PostMapping("/store")
+    // public String add(BrandForm brandForm, Model model) {
+    // String name = brandForm.getName();
+    // String description = brandForm.getDescription();
+
+    // if (name.equals("") || name.equals(" ") || name.equals(" ")) {
+    // model.addAttribute("errorMessage", "空文字・スペースでは入力しないでください");
+    // return "admin/brand/add-form";
+    // }
+
+    // if (name.length() >= 0 && name.length() <= 3) {
+    // model.addAttribute("errorMessage", "4文字以上で入力してください");
+    // return "admin/brand/add-form";
+    // }
+
+    // Brand brand = new Brand();
+    // brand.setName(name);
+    // brand.setDescription(description);
+
+    // brandRepository.save(brand);
+
+    // model.addAttribute("brand", brand);
+    // return "admin/brand/complete";
+    // }
+
+    // Chapter2 Lesson2 Section C
+    @PostMapping("/store")
+    public String add(BrandForm brandForm, Model model) {
+        String name = brandForm.getName();
+        String description = brandForm.getDescription();
+
+        if (name.equals("") || name.equals(" ") || name.equals("　")) {
+            model.addAttribute("errorMessage", "ブランド名を入力してください");
+            return "admin/brand/add-form";
+        } else if (name.length() >= 0 && name.length() <= 3) {
+            model.addAttribute("errorMessage", "20文字未満で入力してください");
+            return "admin/brand/add-form";
         }
+
+        Brand brand = new Brand();
+        brand.setName(name);
+        brand.setDescription(description);
+
+        brandRepository.save(brand);
+
+        model.addAttribute("brand", brand);
+        return "admin/brand/complete";
+    }
 }
