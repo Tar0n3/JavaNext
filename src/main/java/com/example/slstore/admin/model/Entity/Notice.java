@@ -2,6 +2,8 @@ package com.example.slstore.admin.model.entity;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.SQLRestriction;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "notices")
+@SQLRestriction("is_deleted = 0")
 public class Notice {
 
     @Id
@@ -20,7 +23,7 @@ public class Notice {
 
     private String content;
 
-    private Boolean isActive = true;
+    private int isDeleted;
 
     private int priority = 0;
 
@@ -52,12 +55,12 @@ public class Notice {
         this.content = content;
     }
 
-    public Boolean getIsActive() {
-        return isActive;
+    public int getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setIsDeleted(int isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     public Integer getPriority() {

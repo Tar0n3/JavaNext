@@ -53,19 +53,22 @@ public class BrandController {
     //     return "admin/brand/complete";
     // }
 
-        // Chapter2 Lesson1 Section C
-        @PostMapping("/store")
-        public String add(BrandForm brandForm, Model model) {
-            String name = brandForm.getName();
-            String description = brandForm.getDescription();
-    
-            Brand brand = new Brand();
-            brand.setName(name);
-            brand.setDescription(description);
-    
-            brandRepository.save(brand);
+    // Chapter2 Lesson1 Section C
+    @PostMapping("/store")
+    public String add(BrandForm brandForm, Model model) {
+        String name = brandForm.getName();
+        String description = brandForm.getDescription();
 
-            model.addAttribute("brand", brand);
-            return "admin/brand/complete";
-        }
+        Brand brand = new Brand();
+        brand.setName(name);
+        brand.setDescription(description);
+
+        brandRepository.save(brand);
+
+        model.addAttribute("brand", brand);
+        return "admin/brand/complete";
+    }
+
+
+    
 }

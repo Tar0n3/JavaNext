@@ -26,10 +26,10 @@
                         <td th:text="${brand.name}"></td>
                         <td th:text="${brand.description}"></td>
                         <td>
-                            <a href="#" class="btn btn-success">編集</a>
+                            <a th:href="@{/admin/brand/edit/1}" class="btn btn-success">編集</a>
                         </td>
                         <td class="action-buttons">
-                            <a href="#" class="btn btn-danger">削除</a>
+                            <a th:href="@{/admin/brand/delete/1}" class="btn btn-danger">削除</a>
                         </td>
                     </tr>
                 </tbody>

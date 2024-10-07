@@ -2,9 +2,18 @@ package com.example.slstore.admin.model.dto;
 
 public class NoticeForm {
 
+    private int id;
     private String title;
     private String content;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getTitle() {
         return title;
     }
