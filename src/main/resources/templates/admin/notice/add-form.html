@@ -1,74 +1,48 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{admin/layouts/base :: layout(~{::title},~{::body/content()})}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お知らせ</title>
-    <link rel="stylesheet" th:href="@{/css/admin/style.css}" href="../../../static/css/admin/style.css">
-    <script th:src="@{/js/admin/script.js}" src="../../../static/js/admin/script.js"></script>
+    <title>お知らせ新規登録</title>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <div class="system-name">管理システム</div>
-            <div class="user-logout">
-                <span id="username">管理者</span>
-                <a href="#" id="logout">ログアウト</a>
-            </div>
-        </header>
-        <div class="sidebar">
-            <h2>管理メニュー</h2>
-            <ul>
-                <li>
-                    <a href="#" class="dropdown-toggle">商品管理</a>
-                    <ul class="submenu">
-                        <li><a href="/admin/brand/add">ブランド新規登録</a></li>
-                        <li><a href="/admin/brand/list">ブランド一覧</a></li>
-                        <li><a href="/admin/category/add">カテゴリー新規登録</a></li>
-                        <li><a href="/admin/category/list">カテゴリー一覧</a></li>
-                        <li><a href="/admin/product/add">商品新規登録</a></li>
-                        <li><a href="/admin/product/list">商品一覧</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle">受注管理</a>
-                    <ul class="submenu">
-                        <li><a href="/admin/order/list">受注一覧</a></li>
-                        <li><a href="/admin/order/add">受注登録</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle">顧客管理</a>
-                    <ul class="submenu">
-                        <li><a href="/admin/customer/list">顧客一覧</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle">設定</a>
-                    <ul class="submenu">
-                        <li><a href="/admin/notice/add">お知らせ登録</a></li>
-                        <li><a href="/admin/notice/list">お知らせ一覧</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="content">
-            <form th:object="${noticeForm}" th:action="@{/admin/notice/add}" th:method="post">
-                <div>
-                    <label>お知らせ内容</label>
-                    <div>
-                        <textarea th:field="*{content}"></textarea>
-                    </div>
+    <!-- Chapter2 Lesson1 Section A -->
+    <!-- <div class="content">
+        <h1>お知らせ登録</h1>
+        <div class="form-container">
+            <form>
+                <div class="form-group">
+                    <label>タイトル</label>
+                    <input type="text">
                 </div>
-                <div>
-                    <input type="submit">
+                <div class="form-group">
+                    <label>内容</label>
+                    <textarea></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">登録</button>
                 </div>
             </form>
         </div>
-        <div class="footer">
-            <p>&copy; 2024 SLSMS. All rights reserved.</p>
+    </div> -->
+    <!-- Chapter2 Lesson1 Section A -->
+    <div class="content">
+        <h1>お知らせ登録</h1>
+        <div class="form-container">
+            <form th:action="@{/admin/notice/store}" th:method="post" th:object="${noticeForm}">
+                <div class="form-group">
+                    <label>タイトル</label>
+                    <input type="text" th:field="*{title}">
+                </div>
+                <div class="form-group">
+                    <label>内容</label>
+                    <textarea th:field="*{content}"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">登録</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
