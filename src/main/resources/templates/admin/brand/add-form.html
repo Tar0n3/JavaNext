@@ -10,6 +10,9 @@
     <!-- Chapter2 Lesson1 Section A -->
     <div class="content">
         <h1>ブランド登録</h1>
+        <div th:if="${errorMessage}" class="error-message">
+            <p th:text="${errorMessage}"></p>
+        </div>
         <div class="form-container">
             <form th:action="@{/admin/brand/store}" th:method="post" th:object="${brandForm}">
                 <div class="form-group">

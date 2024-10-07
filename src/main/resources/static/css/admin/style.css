@@ -111,6 +111,17 @@ h1 {
   margin-bottom: 30px;
 }
 
+.error-message {
+  color: #e74c3c;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb; 
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
