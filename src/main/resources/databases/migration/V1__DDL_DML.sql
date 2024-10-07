@@ -17,21 +17,6 @@ CREATE TABLE "users" (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE OR REPLACE FUNCTION update_modified_column()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at = CURRENT_TIMESTAMP;
-    RETURN NEW;
-END;
-$$
- LANGUAGE plpgsql;
-
-CREATE TRIGGER update_users_modtime
-BEFORE UPDATE ON users
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_column();
-
-
 CREATE TABLE prefectures (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -54,18 +39,13 @@ CREATE TABLE addresses (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TRIGGER update_addresses_modtime
-BEFORE UPDATE ON addresses
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_column();
-
 -- ブランドテーブルの作成
 CREATE TABLE brands (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     logo VARCHAR(255),
-    is_active BOOLEAN DEFAULT TRUE,
+    is_deleted INTEGER DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -97,32 +77,6 @@ CREATE TABLE products (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     published_at TIMESTAMP
 );
-
--- 更新日時を自動的に更新するトリガー関数
-CREATE OR REPLACE FUNCTION update_modified_column()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at = CURRENT_TIMESTAMP;
-    RETURN NEW;
-END;
-$$
- LANGUAGE plpgsql;
-
--- 各テーブルに更新トリガーを設定
-CREATE TRIGGER update_brands_modtime
-BEFORE UPDATE ON brands
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_column();
-
-CREATE TRIGGER update_categories_modtime
-BEFORE UPDATE ON categories
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_column();
-
-CREATE TRIGGER update_products_modtime
-BEFORE UPDATE ON products
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_column();
 
 -- パスワード test = $2a$10$wr/WSn.aUj0z./d9SpkVM.LrxiYmHjWhbyV0WCgvIO49IMzcO3x9y
 INSERT INTO users (username, email, password_hash, first_name, last_name, first_name_kana, last_name_kana, birth_date, gender, phone_number)
@@ -160,41 +114,36 @@ CREATE TABLE notices (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT,
-    is_active BOOLEAN DEFAULT TRUE,
+    is_deleted INTEGER DEFAULT 0,
     priority INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 更新日時を自動的に更新するトリガー
-CREATE TRIGGER update_notices_modtime
-BEFORE UPDATE ON notices
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_column();
 
-INSERT INTO notices (title, content, is_active, priority)
+INSERT INTO notices (title, content, is_deleted, priority)
 VALUES
     ('夏季セール開始のお知らせ', 
      '7月1日から夏季セールを開始します。全商品最大50%オフ！この機会をお見逃しなく。',
-     TRUE,
+     0,
      10),
 
     ('システムメンテナンスのお知らせ', 
      '7月15日午前2時から4時まで、システムメンテナンスを実施いたします。この間はサービスをご利用いただけません。ご不便をおかけして申し訳ございません。',
-     TRUE,
+     0,
      20),
 
     ('新商品入荷のお知らせ', 
      '人気ブランドの秋冬新作が入荷しました！最新のファッショントレンドをチェックしてください。',
-     TRUE,
+     0,
      5),
 
     ('ポイント2倍キャンペーン', 
      '8月5日から8月20日まで、全商品購入でポイントが通常の2倍になります！この機会にぜひお買い物をお楽しみください。',
-     TRUE,
+     0,
      15),
 
     ('お客様感謝デー開催', 
      '日頃の感謝を込めて、9月1日に特別セールを開催いたします。会員様限定で追加割引も！',
-     TRUE,
+     0,
      10);

@@ -1,5 +1,7 @@
 package com.example.slstore.admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,14 @@ public class BrandController {
     @Autowired
     private BrandRepository brandRepository;
 
+    // Chapter3 Lesson1 Section A
+    @GetMapping("/index")
+    public String list(Model model) {
+        List<Brand> brands = brandRepository.findAll();
+        model.addAttribute("brands", brands);
+        return "admin/brand/list";
+    }
+
     // Chapter2 Lesson1 Section A
     // @GetMapping("addform")
     // public String showAddForm() {
@@ -35,6 +45,16 @@ public class BrandController {
     // Chapter2 Lesson1 Section B
     // @PostMapping("/store")
     // public String add(BrandForm brandForm, Model model) {
+
+    //     String name = brandForm.getName();
+    //     String description = brandForm.getDescription();
+
+    //     model.addAttribute("name", name);
+    //     model.addAttribute("description", description);
+    //     return "admin/brand/complete";
+    // }
+
+    // Chapter2 Lesson1 Section C
     // String name = brandForm.getName();
     // String description = brandForm.getDescription();
 
@@ -112,6 +132,7 @@ public class BrandController {
         String name = brandForm.getName();
         String description = brandForm.getDescription();
 
+
         if (name.equals("") || name.equals(" ") || name.equals("　")) {
             model.addAttribute("errorMessage", "ブランド名を入力してください");
             return "admin/brand/add-form";
@@ -129,4 +150,5 @@ public class BrandController {
         model.addAttribute("brand", brand);
         return "admin/brand/complete";
     }
+
 }

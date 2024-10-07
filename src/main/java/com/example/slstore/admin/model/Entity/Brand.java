@@ -22,7 +22,7 @@ public class Brand {
 
     private String logo;
 
-    private Boolean isActive = true;
+    private int isDeleted;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -60,12 +60,12 @@ public class Brand {
         this.logo = logo;
     }
 
-    public Boolean getIsActive() {
-        return isActive;
+    public int getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setIsDeleted(int isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     public LocalDateTime getCreatedAt() {
