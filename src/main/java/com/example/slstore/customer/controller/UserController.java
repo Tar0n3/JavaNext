@@ -84,20 +84,20 @@ public class UserController {
     // }
 
     // Chapter1 Lesson2 Section C
-    @GetMapping("/mypage")
-    public String myPage(Model model) {
-        Account account = new Account("田中太郎", 5000);
-        String name = account.getName();
-        String pointsStr = "保有ポイント： " + account.getPoints() + "pt(初回プレゼント1000ポイント含)";
+    // @GetMapping("/mypage")
+    // public String myPage(Model model) {
+    //     Account account = new Account("田中太郎", 5000);
+    //     String name = account.getName();
+    //     String pointsStr = "保有ポイント： " + account.getPoints() + "pt(初回プレゼント1000ポイント含)";
 
-        String greeting = account.greeting();
+    //     String greeting = account.greeting();
 
-        model.addAttribute("name", name);
-        model.addAttribute("points", pointsStr);
-        model.addAttribute("greeting", greeting);
+    //     model.addAttribute("name", name);
+    //     model.addAttribute("points", pointsStr);
+    //     model.addAttribute("greeting", greeting);
 
-        return "customer/account/mypage";
-    }
+    //     return "customer/account/mypage";
+    // }
 
     // Chapter1 Lesson3 Section A
     // @GetMapping("/mypage")
